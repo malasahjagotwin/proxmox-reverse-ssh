@@ -11,3 +11,10 @@ Secure, production-grade guide and scripts to expose local Proxmox VE & LXC/VM c
 - `README.md`: Comprehensive step-by-step documentation.
 - `scripts/install-tunnel.sh`: Automated setup script.
 - `.github/workflows/ci.yml`: Automated validation check.
+
+## Flapping tunnel
+
+Kalau tunnel sering mutus (port di VPS kadang `up` kadang `down`):
+1. Cek `journalctl -u reverse-ssh -n 30` di klien — biasanya `ExitOnForwardFailure` kena.
+2. Pastikan hanya **satu host** yang bind ke port yang sama di VPS (clone CT sering tabrakan).
+3. Naikkan agresivitas keepalive: `ServerAliveInterval=15`, `ServerAliveCountMax=4`.

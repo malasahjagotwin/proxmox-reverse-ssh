@@ -147,3 +147,11 @@ ssh -N -o ServerAliveInterval=30 -o ServerAliveCountMax=3 `
     ├── reverse-ssh.service      # template systemd
     └── install-tunnel.sh        # script setup cepat
 ```
+
+---
+
+## Tips
+
+- Simpan nama service per-port (mis. `reverse-ssh-1001`) kalau satu host punya banyak tunnel.
+- Log tiap tunnel: `journalctl -u reverse-ssh -f`.
+- Hindari memakai password root untuk login publik; pakai key + `PermitRootLogin prohibit-password`.

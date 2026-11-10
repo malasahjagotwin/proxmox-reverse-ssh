@@ -1,0 +1,19 @@
+[Unit]
+Description=Reverse SSH tunnel ke VPS
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/ssh -N \
+  -o ExitOnForwardFailure=yes \
+  -o ServerAliveInterval=30 \
+  -o ServerAliveCountMax=3 \
+  -o StrictHostKeyChecking=accept-new \
+  -i /root/.ssh/id_tunnel \
+  -R 0.0.0.0:1001:localhost:22 \
+  root@<VPS_IP>
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

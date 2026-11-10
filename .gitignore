@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+*.pem
+*.key
+id_*
+authorized_keys
+.env
+secrets*
